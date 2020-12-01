@@ -27,7 +27,7 @@ SECRET_KEY = '*xgnb7**#bp)ee^hnns&pez8re(y0fu9x)^r8b07#0ab-%w!gj'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['keenon.pythonanywhere.com']
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -52,7 +52,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'KeenOn.urls'
+ROOT_URLCONF = 'keenon.urls'
 
 TEMPLATES = [
     {
@@ -70,7 +70,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'KeenOn.wsgi.application'
+WSGI_APPLICATION = 'keenon.wsgi.application'
 
 
 # Database
