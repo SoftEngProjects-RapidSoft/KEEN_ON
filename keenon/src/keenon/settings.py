@@ -27,7 +27,7 @@ SECRET_KEY = '*xgnb7**#bp)ee^hnns&pez8re(y0fu9x)^r8b07#0ab-%w!gj'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['keenon.pythonanywhere.com']
 
 
 # Application definition
@@ -52,7 +52,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'keenon.urls'
+ROOT_URLCONF = 'KeenOn.urls'
 
 TEMPLATES = [
     {
@@ -70,7 +70,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'keenon.wsgi.application'
+WSGI_APPLICATION = 'KeenOn.wsgi.application'
 
 
 # Database
@@ -125,3 +125,7 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static')
 ]
+
+MEDIA_URL = '/images/'
+
+MEDIA_ROOT =os.path.join(BASE_DIR, 'static/images')
