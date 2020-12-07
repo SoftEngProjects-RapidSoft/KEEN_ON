@@ -18,7 +18,7 @@
 
 
 ### In Progress
-  - [x] urls buttons click task (```frontend```)
+  - [x] urls buttons click responses (```frontend```)
   - [ ] database highlevel viewing (```database```)
   - [ ] response time handling
 
