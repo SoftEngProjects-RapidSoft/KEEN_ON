@@ -1,15 +1,35 @@
 from django.db import models
 from django.contrib.auth.models import User
 # Create your models here.
+
+
 class Customer(models.Model):
 	user = models.OneToOneField(User,null=True, blank=True, on_delete= models.CASCADE)
-	name = models.CharField(max_length= 200, null=True)
+	userName = models.CharField(max_length= 200, null=True)
 	email = models.CharField(max_length= 200)
+	firstName = models.CharField(max_length= 200, null=True)
+	lastName = models.CharField(max_length= 200, null=True)
+	#image = models.ImageField(default='default.jpg', upload_to='profile_pics')
+	phone =  models.CharField(max_length= 12, null=True)
+	
 
 	def _str_(self):
-		return self.name
+		return self.userName
+
+class Address(models.Model):
+	user = models.OneToOneField(User, on_delete=models.SET_NULL, null=True, blank=True)
+	country =models.CharField(max_length= 200, null=True) 
+	city =models.CharField(max_length= 200, null=True)
+	town =models.CharField(max_length= 200, null=True) 
+	aveSt = models.CharField(max_length= 200, null=True) 
+	apartmentNo = models.CharField(max_length= 200, null=True) 
+	zipCode = models.CharField(max_length= 200, null=True) 
+		
+	def _str_(self):
+		return self.country + " " + self.city + " " + self.town + " " +self.aveSt + " " + self.apartmentNo + " " + self.zipCode		
 
 class Product(models.Model):
+	customer = models.ForeignKey(Customer, on_delete=models.SET_NULL, null=True, blank=True)
 	name = models.CharField(max_length=200, null=True)
 	price= models.FloatField()
 	digital = models.BooleanField(default=False, null=True, blank=False)
@@ -17,7 +37,6 @@ class Product(models.Model):
 
 	def _str_(self):
 		return self.name
-
 	@property
 	def imageURL(self):
 		try:

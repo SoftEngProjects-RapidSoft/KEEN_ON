@@ -7,6 +7,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="{% static 'css/profile.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/navbar.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 {% endblock %}
 
 {% block content %}
@@ -20,7 +28,7 @@
     <br>
 </div>
 
-            <br>
+
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
 <section id="content" class="container">
     <!-- Begin .page-heading -->
@@ -32,8 +40,7 @@
             </a>
           </div>
           <div class="media-body va-m">
-            <h2 class="media-heading">Michael Halls
-              <small> - Profile</small>
+            <h2 class="media-heading">{{customer.firstName}} {{customer.lastName}}
             </h2>
             <p class="lead">Lorem ipsum dolor sit amet ctetur adicing elit, sed do eiusmod tempor incididunt</p>
             </div>
@@ -53,68 +60,145 @@
 
             </div>
           </div>
+          
           <div class="panel">
             <div class="panel-heading">
               <span class="panel-icon">
+               
               </span>
-              <span class="panel-title"> Adress</span>
+              User Information
+              <span class="panel-title"></span>
             </div>
             <div class="panel-body pb5">
-             <p class="text-muted"> ...
-                <br> ....
-              </p>
-
-            </div>
-          </div>
-          <div class="panel">
-            <div class="panel-heading">
-              <span class="panel-icon">
-              </span>
-              <span class="panel-title">E-mail</span>
-            </div>
-            <div class="panel-body pb5">
-
-              <p class="text-muted">Bonsai,Necklaces
+              <h6>User Name</h6>
+              <p class="text-muted">{{customer.userName}}
               </p>
 
               <hr class="short br-lighter">
 
               <h6>Phone Number</h6>
-              <p class="text-muted"> +905...
+              <p class="text-muted"> {{customer.phone}}
               </p>
 
               <hr class="short br-lighter">
 
               <h6>E-mail</h6>
-              <p class="text-muted pb10"> ...@.mail.com
+              <p class="text-muted pb10">{{customer.email}}
               </p>
+              <hr class="short br-lighter">
+              <span class="panel-icon">
+                  <img style='height: 7%; width: 7%; object-fit: contain' src="{% static 'images/address.png' %}">             
+                  Address
+                </span>
+                <br>
+                <br>
+                  <p class="text-muted pb10">{{address.apartmentNo}}</p>                  
+                  <p class="text-muted pb10">{{address.aveSt}}</p>
+                  <p class="text-muted pb10">{{address.town}}</p>
+                  <p class="text-muted pb10">{{address.city}}/{{address.country}}</p>
+                  <p class="text-muted pb10">{{address.zipCode}}</p>
 
-            </div>
+                  </div>
+            
           </div>
+
         </div>
         <div class="col-md-8">
 
           <div class="tab-block">
             <ul class="nav nav-tabs">
-              <li class="active">
-                <a href="#tab1" data-toggle="tab"> Edit</a>
+              <li class="nav-item">
+                <a href="#tab1" class="nav-link active" data-toggle="tab"> Edit</a>
               </li>
-              <li>
-                <a href="#tab1" data-toggle="tab"> Orders</a>
+              <li class="nav-item">
+                <a href="#tab2" class="nav-link" data-toggle="tab"> Orders</a>
               </li>
-              <li>
-                <a href="#tab1" data-toggle="tab"> My Store</a>
+              <li class="nav-item">
+                <a href="#tab3" class="nav-link" data-toggle="tab"> My Store</a>
               </li>
             </ul>
-            <div class="tab-content p30" style="height: 730px;">
-              <div id="tab1" class="tab-pane active">
 
 
+
+
+            <div class="tab-content" style="height: 730px;">
+               <div class="tab-pane fade show active" id="tab1">
+                  <li><a href="{% url 'updateform' %}">Edit User Information</a></li>
+                   
+                  <br>
+                  <form method="POST" >
+                    {% csrf_token %}
+                    <legend class="border-bottom mb-4">Profile Info</legend>
+                    <hr>
+                    <div class="form-group">
+                        <label class="col-md-2 col-sm-3 col-xs-12 control-label">User Name</label>
+                        <div class="col-md-10 col-sm-9 col-xs-12">
+                        <input type="text" class="form-control" name="{{ u_form.userName }}" value={{customer.userName}}>
+                        
+              
+                    </div>
+                    <hr>
+                    <fieldset class="form-group">
+                        <input type="text" class="form-control" name="{{ u_form.email }}" value={{customer.email}}>
+                    </fieldset>
+                    <hr>
+                    <div class="form-group">
+                        <button class="btn btn-outline-info" type="submit" >Update</button>
+                    </div>
+                </form>
 
               </div>
-              <div id="tab2" class="tab-pane"></div>
-              <div id="tab3" class="tab-pane"></div>
-              <div id="tab4" class="tab-pane"></div>
+              
+              <div class="tab-pane fade" id="tab2">
+                <div class="box-element">
+                  <div class="cart-row">
+                    <div style="flex:2"></div>
+                    <div style="flex:2"><strong>Item</strong></div>
+                    <div style="flex:1"><strong>Price</strong></div>
+                    <div style="flex:1"><strong>Quantity</strong></div>
+                    <div style="flex:1"><strong>Total</strong></div>
+                  </div>
+                  {%for item in items %}
+                  <div class="cart-row">
+                    <div style="flex:2"><img class="row-image" src="{{item.product.imageURL}}"></div>
+                    <div style="flex:2"><p>{{item.product.name}}</p></div>
+                    <div style="flex:1"><p>₺{{item.product.price|floatformat:2}}</p></div>
+                    <div style="flex:1">
+                      <p class="quantity">x{{item.quantity}}</p>
+                      <div class="quantity">
+                        <img class="chg-quantity" src="{% static  'images/arrow-up.png' %}">
+
+                        <img class="chg-quantity" src="{% static  'images/arrow-down.png' %}">
+                      </div>
+                    </div>
+                    <div style="flex:1"><p>₺{{item.get_total}}</p></div>
+                  </div>
+                  {%endfor%}
+
+                </div>               
+              </div>
+              <div class="tab-pane fade" id="tab3">
+                <div class="small-container">
+                    <div class="row">
+                      {% for product in products %}
+                        <div class="col-4">
+                          <img class="thumbnail" src="{{product.imageURL}}">
+                          <h6><strong>{{product.name}}</strong></h6>
+                          <div class="rating">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star-o"></i>
+                            <i class="fa fa-star-o"></i>
+                          </div>
+                          <button  class="btn btn-outline-secondary add-btn">Add to Cart</button>
+                          <a class="btn btn-outline-success" href="#">Details</a>
+                          <h4 style="display: inline-block; float: right"><strong>{{product.price|floatformat:2}}₺</strong></h4>
+                        </div>
+                      {%endfor%}
+                  </div>
+
+              </div>
             </div>
           </div>
         </div>
@@ -122,6 +206,7 @@
   </section>
 <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
 <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script type="text/javascript"></script>
+
+
 
 {% endblock %}
