@@ -2,7 +2,7 @@ from django.shortcuts import render
 from .models import Customer,Product, Order, Address
 
 
-from .forms import CustomerUpdateForm, AddressUpdateForm
+from .forms import CustomerUpdateForm, AddressUpdateForm, AddProductForm
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
@@ -47,6 +47,25 @@ def profile(request):
     }
 
     return render(request, 'store/updateform.html', context)
+
+@login_required
+def addproduct(request):
+    if request.method == 'POST':
+        p_form = AddProductForm(request.POST or None)
+        if p_form.is_valid():
+            product = p_form.save(commit=False)
+            product.customer = request.user.customer
+            p_form.save()
+            messages.success(request, f'New product has been added!')
+            return redirect('account_details')
+    else:
+        p_form = AddProductForm()
+
+    context = {
+        'p_form':p_form
+    }
+
+    return render(request, 'store/addproductform.html', context)
 
 
 def product_details(request):

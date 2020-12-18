@@ -1,5 +1,5 @@
 from django import forms
-from .models import Customer,Address
+from .models import Customer,Address,Product
 
 
 
@@ -12,3 +12,7 @@ class AddressUpdateForm(forms.ModelForm):
     class Meta:
         model = Address
         fields = ['country','city','town','aveSt','apartmentNo','zipCode']
+class AddProductForm(forms.ModelForm):
+    class Meta:
+        model = Product
+        fields = ['name','price','quantity','description']
