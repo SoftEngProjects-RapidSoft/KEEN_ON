@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+{% extends 'store/base.html' %}
+{% load static %}
+
+{% block forHead %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/navbar.css' %}">
+{% endblock %}
+
+{% block content %}
+<div style = "background-color: #00ff00;">
+    {% include "store/navbar.html" %}
+    <br>
+    <br>
+    <br>
+</div>
+
+
+<div class="small-container">
+<h2 class="title">Latest Products </h2>
+	<div class="row">
+	{% for product in products %}
+		<div class="col-4">
+			<img src="{% static 'images/placeholder2.png' %}">
+			<h4>T-Shirt</h4>
+			<div class="rating">
+				<i class="fa fa-star"></i>
+				<i class="fa fa-star"></i>
+				<i class="fa fa-star-half"></i>
+				<i class="fa fa-star-o"></i>
+				<i class="fa fa-star-o"></i>
+			</div>
+			<p>price</p>
+		</div>
+		{%endfor%}
+	</div>
+
+<h2 class="title">Products</h2>
+
+	<div class="row">
+	{% for product in products %}
+		<div class="col-4">
+			<img class="thumbnail" src="{{product.imageURL}}">
+			<h6><strong>{{product.name}}</strong></h6>
+			<div class="rating">
+				<i class="fa fa-star"></i>
+				<i class="fa fa-star"></i>
+				<i class="fa fa-star"></i>
+				<i class="fa fa-star-o"></i>
+				<i class="fa fa-star-o"></i>
+			</div>
+			<button  class="btn btn-outline-secondary add-btn">Add to Cart</button>
+			<a class="btn btn-outline-success" href="#">Details</a>
+			<h4 style="display: inline-block; float: right"><strong>{{product.price|floatformat:2}}₺</strong></h4>
+		</div>
+    {%endfor%}
+
+	</div>
+
+</div>
+{% endblock %}
