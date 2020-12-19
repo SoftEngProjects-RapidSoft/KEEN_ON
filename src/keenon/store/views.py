@@ -42,3 +42,7 @@ def cart(request):
 def checkout(request):
     context = {}
     return render(request, 'store/checkout.html', context)
+
+
+# these are all just for GET request, POST tests will be 
+# added soon
