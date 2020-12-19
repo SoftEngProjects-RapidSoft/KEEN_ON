@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+{% extends 'store/base.html' %}
+
+{% load static %}
+
+{% block forHead %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/navbar.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/profile.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}">
+	 <link rel="stylesheet" type="text/css" href="{% static 'css/view.css' %}">
+	<script type="text/javascript" src="{% static 'js/view.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+<div>
+    {% include "store/navbar.html" %}
+    <br>
+    <br>
+    <br>
+</div>
+<div style="background-color:#999290;">
+
+<div class="small-container">
+	<div style = "background-color:#DDDDE0;">
+		<br>
+    <br>
+    <br>
+<h2 class="title">Latest Products </h2>
+
+	<div class="row">
+		{% for product in products %}
+		<div class="col-3">
+			<img class="thumbnail" src="{{product.imageURL}}">
+			<div class="box-element product">
+				<h6><strong>{{product.name}}</strong></h6>
+				<hr>
+
+				<button data-product="{{product.id}}" data-action="add" class="btn btn-outline-secondary add-btn update-cart">Add to Cart</button>
+				<a data-product="{{product.id}}" class="btn btn-outline-secondary add-btn update-cart popup" onclick="myFunction()">Details
+				  <span class="popuptext" id="myPopup">Popup
+				   text...
+					  <head>
+						<title>details tag</title>
+						<style>
+							summary {
+								font-size:40px;
+								color:#090;
+								font-weight:bold;
+							}
+						</style>
+					</head>
+					<body>
+						<details>
+							<summary>GeeksforGeeks</summary>
+							<p>A computer science portal for geeks</p>
+							<div>It is a computer science portal where you
+							can learn programming.</div>
+						</details>
+					</body>
+
+				  </span>
+				</a>
+
+				<h4 style="display: inline-block; float: right"><strong>${{product.price}}</strong></h4>
+			</div>
+		</div>
+		{% endfor %}
+	</div>
+	<br>
+    <br>
+    <br>
+<h2 class="title">Products</h2>
+
+	<div class="row">
+	{% for product in products %}
+		<div class="col-3">
+			<img class="thumbnail" src="{{product.imageURL}}">
+			<h6><strong>{{product.name}}</strong></h6>
+			<div class="rating">
+				<i class="fa fa-star"></i>
+				<i class="fa fa-star"></i>
+				<i class="fa fa-star"></i>
+				<i class="fa fa-star-o"></i>
+				<i class="fa fa-star-o"></i>
+			</div>
+			<button  class="btn btn-outline-secondary add-btn" style = "background-color: #38BF2D;">Add to Cart</button>
+			<a class="btn btn-outline-success" href="#" style = "background-color: #38BF2D;">Details</a>
+			<h4 style="display: inline-block; float: right"><strong>{{product.price|floatformat:2}}₺</strong></h4>
+		</div>
+    {%endfor%}
+	</div>
+	</div>
+	</div>
+</div>
+<div class="footer">
+	<div class="row">
+		<div class="col-5">
+			<ul>
+				<li><h4>Baran Hasan BOZDUMAN</h4></li>
+					<div class="img_link">
+						<a href="https://github.com/bhbduman" target="blank">
+							<img src="{% static 'images/GitHub.png' %}">
+							GitHub
+						</a><br>
+					</div>
+			</ul>
+		</div>
+		<div class="col-5">
+			<ul>
+				<li><h4>Nevzat SEFEROGLU</h4></li>
+					<a href="https://github.com/nevzatseferoglu" target="blank">
+						<div class="img_link">
+							<img src="{% static 'images/GitHub.png' %}">
+							GitHub
+						</div>
+					</a>
+			</ul>
+		</div>
+		<div class="col-5">
+			<ul>
+				<li><h4>Ceren GUMUS</h4></li>
+					<a href="https://github.com/cerengumus" target="blank">
+						<div class="img_link">
+							<img src="{% static 'images/GitHub.png' %}">
+							GitHub
+						</div>
+					</a>
+
+			</ul>
+		</div>
+		<div class="col-5">
+			<ul>
+				<li><h4>Ali Bahar</h4></li>
+					<a href="https://github.com/alibhr" target="blank">
+						<div class="img_link">
+							<img src="{% static 'images/GitHub.png' %}">
+							GitHub
+						</div>
+					</a><br>
+			</ul>
+		</div>
+		<div class="col-5">
+			<ul>
+				<li><h4>iletisim Bilgileri</h4></li>
+				<li>Gebze Teknik Universitesi<h4>
+                    <li>+9054623235642<h4>
+					<a href="https://github.com/SoftEngProjects-RapidSoft/Keen-On" target="blank">
+						<div class="img_link">
+							<img src="{% static 'images/GitHub.png' %}">
+							GitHub
+						</div>
+					</a><br>
+				</h4></li>
+			</ul>
+		</div>
+	</div>
+</div>
+{% endblock %}

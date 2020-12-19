@@ -1,0 +1,39 @@
+
+/* Popup container */
+ .popup {
+
+ display: inline-block;
+ cursor: pointer;
+ }
+
+ /* The actual popup (appears on top) */
+ .popup .popuptext {
+ visibility: hidden;
+ width: 160px;
+ background-color: white;
+ color: red;
+ text-align: center;
+ }
+
+ /* Popup arrow */
+ .popup .popuptext::after {
+ content: "";
+ top: 100%;
+ left: 50%;
+ margin-left: -5px;
+ border-width: 5px;
+ border-style: solid;
+ border-color: #555 transparent transparent
+ transparent;
+ }
+
+ /* Toggle this class when clicking on the popup
+ container (hide and show the popup) */
+ .popup .show {
+ visibility: visible;
+ -webkit-animation: fadeIn 1s;
+ animation: fadeIn 1s
+ }
+  .product_view .modal-dialog{max-width: 800px; width: 100%;}
+        .pre-cost{text-decoration: line-through; color: #a5a5a5;}
+        .space-ten{padding: 10px 0;}

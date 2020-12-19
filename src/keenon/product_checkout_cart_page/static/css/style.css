@@ -1,0 +1,243 @@
+/*it works for index.html and account.html*/
+
+.container{
+	margin: auto;
+	padding-left: 100px;
+	padding-right: 100px;
+	background: radial-gradient(#fff, #00ff00);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+.container .row{
+	margin-top: 70px;
+}
+
+.row{
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+	justify-content: space-around;
+}
+
+.col-2{
+	flex-basis: 50%;
+	min-width: 300px;
+}
+
+.col-2 img{
+	max-width: 100%;
+	padding: 30px 0;
+}
+
+.col-2 h1{
+	font-size: 50px;
+	line-height: 60px;
+	margin: 25px 0;
+}
+
+.btn{
+	display: inline-block;
+	background: #00c400;
+	color: #fff;
+	padding: 8px 30px;
+	margin: 30px 0;
+	border-radius: 30px;
+	transition: background 0.5s;
+}
+
+.btn:hover{
+	background: #0d6900;
+}
+
+.categories{
+	margin: 80px 0;
+}
+
+.col-3{
+	flex-basis: 30%;
+	min-width: 250px;
+	margin-bottom: 30px;
+	width: 100%;
+	border-bottom: solid #00ff00;
+}
+
+.col-3 img{
+	width: 100%;
+}
+
+.small-container{
+	max-width: 1080px;
+	margin: auto;
+	padding-left: 25px:
+	padding-right: 25px;
+}
+
+.small-container .title{
+	text-align: center;
+	margin: 0 auto 80px;
+	position: relative;
+	line-height: 60px;
+	color: #555;
+	border-bottom: solid;
+	border-color: #00ff00;
+}
+
+.small-container .row .col-4 h4{
+	color: #555;
+	font-weight: normal;
+}
+
+.small-container .row .col-4 p{
+	font-size: 12px;
+}
+
+.col-4{
+	flex-basis: 25%;
+	padding: 10px;
+	min-width: 200px;
+	margin-bottom: 50px;
+	transition: transform 0.5s;
+}
+
+.col-4 img{
+	width: 100%;
+}
+
+.col-4:hover{
+	transform: translateY(-5px);
+}
+
+.rating .fa{
+	color: #ff523b;
+}
+
+.footer{
+	max-width: 100%;
+	max-height: 100%
+	margin: auto;
+	padding-left: 100px;
+	padding-right: 100px;
+
+	background: #000;
+	color: #8a8a8a;
+	font-size: 14px;
+}
+
+.footer .row .col-5{
+	text-align: center;
+	padding: 40px 20px;
+	flex-basis: 20%;
+	transition: transform 0.5s;
+}
+
+.footer .row .col-5 img{
+	width: 50%;
+	padding: 0px 50px;
+	border-radius: 50%;
+}
+
+.footer .row .col-5 h4{
+	padding-bottom: 20px;
+}
+
+.footer .row .col-5 ul{
+	list-style-type: none;
+}
+
+.footer .img_link img{
+	padding: 0 !important;
+	width: 10% !important;
+	border-radius: 50% !important;
+}
+
+.footer  .row .col-5:hover{
+	transform: translateY(-5px);
+}
+
+.account {
+    background-color: #00ff00;
+}
+
+.form-container{
+    background: #fff;
+    width: 300px;
+    height: 400px;
+    position: relative;
+    text-align: center;
+    padding: 20px 0;
+    margin: auto;
+    box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0, 1);
+    overflow: hidden;
+}
+
+.form-container span{
+    font-weight: bold;
+    padding: 0 10px;
+    color: #555;
+    cursor: pointer;
+    width: 100px;
+    display: inline-block;
+}
+
+.form-btn{
+    display: inline-block;
+}
+.form-container form{
+    max-width: 300px;
+    padding: 0 20px;
+    position: absolute;
+    top: 130px;
+    transition: transform 1s;
+}
+
+form input{
+    width: 100%;
+    height: 30px;
+    margin: 10px 0;
+    padding: 0 10px;
+    border: 1px solid #ccc;
+}
+
+form .btn{
+    width: 100%;
+    border: none;
+    cursor: pointer;
+    margin: 10px 0;
+}
+
+form .btn:focus{
+    outline: none;
+}
+
+#LoginForm{
+    left: -300px;
+}
+
+#RegForm{
+    left 0;
+}
+
+form a{
+    font-size: 12px;
+}
+
+#Indicator{
+    width: 100px;
+    border: none;
+    background: #ff523b;
+    height: 3px;
+    margin-top: 8px;
+    transform: translateX(100px);
+    transition: transform 1s;
+}
+
+@media only screen and (max-width: 600px){
+	.row{
+		text-align: center;
+	}
+	.col-2, .col-3, .col-4, .col-5{
+		flex-basis: 100%;
+	}
+}

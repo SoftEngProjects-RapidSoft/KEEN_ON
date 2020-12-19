@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+{% extends 'store/base.html' %}
+{% load static %}
+
+{% block forHead %}
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/navbar.css' %}">
+{% endblock %}
+
+{% block content %}
+<div style = "background-color:#DDDDE0;">
+<div class="account" style = "background-color: #38BF2D;">
+    {% include "store/navbar.html" %}
+    <br>
+    <br>
+    <br>
+</div>
+
+<!---------------------------------------------------------------------->
+
+<div class="account-page">
+        <div class="row">
+            <div class="col-2">
+                <img src="{% static 'images/logo.png' %}" width="100%">
+            </div>
+            <div class="col-2">
+                <div class="form-container">
+                    <div class="form-btn">
+                        <span onclick="login()">Login</span>
+                        <span onclick="register()">Register</span>
+                        <hr id="Indicator">
+                    </div>
+
+                    <form id="LoginForm">
+                        <input type="text" placeholder="Username">
+                        <input type="password" placeholder="Password">
+                        <button type="submit" class="btn">Login</button>
+                        <a href="">Forgot password</a>
+                    </form>
+
+                    <form id="RegForm">
+                        <input type="text" placeholder="Username">
+                        <input type="email" placeholder="Email">
+                        <input type="password" placeholder="Password">
+                        <button type="submit" class="btn">Register</button>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+
+</div>
+
+
+
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+
+</div>
+<!---------------------------------------------------------------------->
+
+<script>
+	var MenuItems = document.getElementById("MenuItems");
+	MenuItems.style.maxHeight = "0px";
+	function menutoggle(){
+		if(MenuItems.style.maxHeight == "0px"){
+			MenuItems.style.maxHeight = "200px"
+		}
+		else{
+			MenuItems.style.maxHeight = "0px"
+		}
+	}
+</script>
+
+<script>
+    var LoginForm = document.getElementById("LoginForm");
+    var RegForm = document.getElementById("RegForm");
+    var Indicator = document.getElementById("Indicator");
+
+    function register(){
+        RegForm.style.transform = "translateX(0px)";
+        LoginForm.style.transform = "translateX(0px)";
+        Indicator.style.transform = "translateX(100px)";
+    }
+
+    function login(){
+        RegForm.style.transform = "translateX(300px)";
+        LoginForm.style.transform = "translateX(300px)";
+        Indicator.style.transform = "translateX(0px)";
+    }
+</script>
+<div class="footer">
+	<div class="row">
+		<div class="col-5">
+			<ul>
+				<li><h4>Baran Hasan BOZDUMAN</h4></li>
+					<div class="img_link">
+						<a href="https://github.com/bhbduman" target="blank">
+							<img src="{% static 'images/GitHub.png' %}">
+							GitHub
+						</a><br>
+					</div>
+			</ul>
+		</div>
+		<div class="col-5">
+			<ul>
+				<li><h4>Nevzat SEFEROGLU</h4></li>
+					<a href="https://github.com/nevzatseferoglu" target="blank">
+						<div class="img_link">
+							<img src="{% static 'images/GitHub.png' %}">
+							GitHub
+						</div>
+					</a><br>
+			</ul>
+		</div>
+		<div class="col-5">
+			<ul>
+				<li><h4>Ceren GUMUS</h4></li>
+					<a href="https://github.com/cerengumus" target="blank">
+						<div class="img_link">
+							<img src="{% static 'images/GitHub.png' %}">
+							GitHub
+						</div>
+					</a><br>
+				<img src="{% static 'images/Ceren_placeholder.png' %}">
+			</ul>
+		</div>
+		<div class="col-5">
+			<ul>
+				<li><h4>Ali Bahar</h4></li>
+					<a href="https://github.com/alibhr" target="blank">
+						<div class="img_link">
+							<img src="{% static 'images/GitHub.png' %}">
+							GitHub
+						</div>
+					</a><br>
+			</ul>
+		</div>
+		<div class="col-5">
+			<ul>
+				<li><h4>iletisim Bilgileri</h4></li>
+				<li>Gebze Teknik Universitesi<h4>
+                    <li>+9054623235642<h4>
+					<a href="https://github.com/SoftEngProjects-RapidSoft/Keen-On" target="blank">
+						<div class="img_link">
+							<img src="{% static 'images/GitHub.png' %}">
+							GitHub
+						</div>
+					</a><br>
+				</h4></li>
+			</ul>
+		</div>
+	</div>
+</div>
+{% endblock %}
