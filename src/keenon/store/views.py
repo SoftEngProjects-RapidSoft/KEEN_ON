@@ -31,7 +31,7 @@ def account_details(request):
 def profile(request):
     
     if request.method == 'POST':
-        u_form = CustomerUpdateForm(request.POST, instance=request.user.customer)
+        u_form = CustomerUpdateForm(request.POST,request.FILES, instance=request.user.customer)
         a_form = AddressUpdateForm(request.POST, instance=request.user.address)
         uu_form = UserUpdateForm(request.POST, instance=request.user)
         if u_form.is_valid() and uu_form.is_valid():
@@ -55,7 +55,7 @@ def profile(request):
 @login_required
 def addproduct(request):
     if request.method == 'POST':
-        p_form = AddProductForm(request.POST or None)
+        p_form = AddProductForm(request.POST or None, request.FILES)
         if p_form.is_valid():
             product = p_form.save(commit=False)
             product.customer = request.user.customer

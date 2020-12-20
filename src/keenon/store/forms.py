@@ -7,7 +7,7 @@ from django.contrib.auth.models import User
 class CustomerUpdateForm(forms.ModelForm):
     class Meta:
         model = Customer
-        fields = ['phone']
+        fields = ['phone', 'image']
 class UserUpdateForm(forms.ModelForm):
     email = forms.EmailField()
     class Meta:
@@ -20,4 +20,4 @@ class AddressUpdateForm(forms.ModelForm):
 class AddProductForm(forms.ModelForm):
     class Meta:
         model = Product
-        fields = ['name','price','quantity','description']
+        fields = ['name','price','quantity','description','image']

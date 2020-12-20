@@ -5,12 +5,18 @@ from django.contrib.auth.models import User
 
 class Customer(models.Model):
 	user = models.OneToOneField(User,null=True, blank=True, on_delete= models.CASCADE)
-	#image = models.ImageField(default='default.jpg', upload_to='profile_pics')
+	image = models.ImageField(default='defaultProfile.png',null=True, blank=True)
 	phone =  models.CharField(max_length= 12, null=True)
-	
-
 	def _str_(self):
-		return self.userName
+		return self.user.username
+
+	@property
+	def imageURL(self):
+		try:
+			url = self.image.url
+		except:
+			url = ''
+		return url
 
 class Address(models.Model):
 	user = models.OneToOneField(User, on_delete=models.SET_NULL, null=True, blank=True)

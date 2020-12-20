@@ -35,6 +35,13 @@
     {% csrf_token %}
     <legend class="border-bottom mb-4">Add Product</legend>
         <fieldset class="form-group">
+            <label class="col-md-2 col-sm-3 col-xs-12 control-label">Picture</label>
+                                <div class="col-md-10 col-sm-9 col-xs-12">
+                {{ p_form.image }}
+            </div>
+        </fieldset>
+    
+        <fieldset class="form-group">
             <label class="col-md-2 col-sm-3 col-xs-12 control-label">Name</label>
                                 <div class="col-md-10 col-sm-9 col-xs-12">
                 {{ p_form.name }}
