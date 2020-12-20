@@ -2,7 +2,7 @@ from django.shortcuts import render
 from .models import Customer,Product, Order, Address
 
 
-from .forms import CustomerUpdateForm, AddressUpdateForm, AddProductForm
+from .forms import CustomerUpdateForm, AddressUpdateForm, AddProductForm, UserUpdateForm
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
@@ -16,12 +16,13 @@ def account_details(request):
         order, created = Order.objects.get_or_create(customer=customer, complete=False)
         items= order.orderitem_set.all()
         address, created = Address.objects.get_or_create(user= request.user)
-
+        user = request.user
+        products = Product.objects.filter(customer=request.user.customer)
 
     else:
         items = []
         order = {'get_cart_total':0, 'get_cart_items':0}
-    context = {'customer' : customer,'products':products, 'items':items, 'order': order, 'address':address}
+    context = {'customer' : customer,'products':products, 'items':items, 'order': order, 'address':address, 'user':user, 'products':products}
     return render(request, 'store/account-details.html', context)
 
 
@@ -32,18 +33,21 @@ def profile(request):
     if request.method == 'POST':
         u_form = CustomerUpdateForm(request.POST, instance=request.user.customer)
         a_form = AddressUpdateForm(request.POST, instance=request.user.address)
-        if u_form.is_valid():
+        uu_form = UserUpdateForm(request.POST, instance=request.user)
+        if u_form.is_valid() and uu_form.is_valid():
             u_form.save()
             a_form.save()
+            uu_form.save()
             messages.success(request, f'Your account has been updated!')
-            return redirect('updateform')
+            return redirect('account_details')
 
     else:
+        uu_form = UserUpdateForm(instance=request.user)
         u_form = CustomerUpdateForm(instance=request.user.customer)
         a_form = AddressUpdateForm(instance=request.user.address) 
 
     context = {
-        'u_form': u_form, 'a_form':a_form
+        'u_form': u_form, 'a_form':a_form, 'uu_form':uu_form
     }
 
     return render(request, 'store/updateform.html', context)
