@@ -1,12 +1,8 @@
 from django.shortcuts import render
-from .models import Customer,Product, Order
+from .models import Product, Order
+from account.models import Customer
 
 # Create your views here.
-
-def account_details(request):
-    customer = Customer.objects.all()
-    context = {'customer' : customer}
-    return render(request, 'store/account-details.html', context)
 
 def product_details(request):
     products = Product.objects.all()
@@ -17,10 +13,6 @@ def home(request):
     products = Product.objects.all()
     context = {'products':products}
     return render(request, 'store/index.html', context)
-
-def account(request):
-    context = {}
-    return render(request, 'store/account.html', context)
 
 def store(request):
     products = Product.objects.all()

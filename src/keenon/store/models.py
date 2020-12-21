@@ -1,23 +1,30 @@
 from django.db import models
 from django.contrib.auth.models import User
+from account.models import Customer
 # Create your models here.
-class Customer(models.Model):
-	user = models.OneToOneField(User,null=True, blank=True, on_delete= models.CASCADE)
-	name = models.CharField(max_length= 200, null=True)
-	email = models.CharField(max_length= 200)
 
+class Address(models.Model):
+	user = models.OneToOneField(User, on_delete=models.SET_NULL, null=True, blank=True)
+	country =models.CharField(max_length= 200, null=True) 
+	city =models.CharField(max_length= 200, null=True)
+	town =models.CharField(max_length= 200, null=True) 
+	aveSt = models.CharField(max_length= 200, null=True) 
+	apartmentNo = models.CharField(max_length= 200, null=True) 
+	zipCode = models.CharField(max_length= 200, null=True) 
+		
 	def _str_(self):
-		return self.name
+		return self.country + " " + self.city + " " + self.town + " " +self.aveSt + " " + self.apartmentNo + " " + self.zipCode		
 
 class Product(models.Model):
+	customer = models.ForeignKey(Customer, on_delete=models.CASCADE, null=True, blank=True, related_name="product_c")
 	name = models.CharField(max_length=200, null=True)
 	price= models.FloatField()
 	digital = models.BooleanField(default=False, null=True, blank=False)
 	image = models.ImageField(null=True, blank=True)
-
+	quantity = models.IntegerField(default=0, null=True, blank=True)
+	description =models.CharField(default="default", max_length=200, null=False)
 	def _str_(self):
 		return self.name
-
 	@property
 	def imageURL(self):
 		try:
@@ -25,7 +32,6 @@ class Product(models.Model):
 		except:
 			url = ''
 		return url
-
 
 class Order(models.Model):
 	customer = models.ForeignKey(Customer, on_delete=models.SET_NULL, null=True, blank=True)
