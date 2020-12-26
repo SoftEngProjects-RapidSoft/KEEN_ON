@@ -11,10 +11,11 @@
 		<!--	<li><a href="">About</a></li> -->
 			<li><a href="{% url 'account:account' %}">Account</a></li>
             <li>
-                <a href = "{% url 'cart' %}"><h4>
-                    <img src="{% static 'images/cart.png' %}" width="30px" height="30px">
-                    <p>Cart</p>
-                </h4></a>
+                 <a href = "{% url 'cart' %}">
+                    <img id='cart-icon' src="{% static 'images/cart.png' %}" width="25px"></a>
+                <p id="cart-total">{{cartItems}}</p>
+
+
             </li>
 		</ul>
 	</nav>
@@ -33,3 +34,4 @@
 		}
 	}
 </script>
+	<script type="text/javascript" src="{% static 'js/cart.js' %}"></script>

@@ -8,20 +8,26 @@
     <link rel="stylesheet" type="text/css" href="{% static 'css/checkout.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/profile.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/navbar.css' %}">
 {% endblock %}
 
 {% block content %}
-
+<div style = "background-color:#DDDDE0;">
 <div style = "background-color: #00ff00;">
     {% include "store/navbar.html" %}
     <br>
     <br>
     <br>
 </div>
+
 <div class="row">
 	<div class="col-lg-12">
+		<div class="col-lg-12">
+			<div class="col-lg-12">
+				<div class="col-lg-12">
+					<div class="col-lg-12">
 		<div class="box-element">
 
 			<a  class="btn btn-outline-dark" href="{% url 'store' %}">&#x2190; Continue Shopping</a>
@@ -41,7 +47,7 @@
 		</div>
 
 		<br>
-		<div class="box-element">
+		<div class="box-element" style = "background-color:#FFFFFF">
 			<div class="cart-row">
 				<div style="flex:2"></div>
 				<div style="flex:2"><strong>Item</strong></div>
@@ -49,7 +55,11 @@
 				<div style="flex:1"><strong>Quantity</strong></div>
 				<div style="flex:1"><strong>Total</strong></div>
 			</div>
+			</div>
+			</div>
+			</div>
 			{%for item in items %}
+			<div style = "background-color:#DDDDE0;">
 			<div class="cart-row">
 				<div style="flex:2"><img class="row-image" src="{{item.product.imageURL}}"></div>
 				<div style="flex:2"><p>{{item.product.name}}</p></div>
@@ -57,17 +67,98 @@
 				<div style="flex:1">
 					<p class="quantity">x{{item.quantity}}</p>
 					<div class="quantity">
-						<img class="chg-quantity" src="{% static  'images/arrow-up.png' %}">
+						<img date-product={{item.product.id}} data-action="add" class="chg-quantity" src="{% static  'images/arrow-up.png' %}">
 
-						<img class="chg-quantity" src="{% static  'images/arrow-down.png' %}">
+						<img date-product={{item.product.id}} data-action="remove" class="chg-quantity" src="{% static  'images/arrow-down.png' %}">
 					</div>
 				</div>
 				<div style="flex:1"><p>₺{{item.get_total}}</p></div>
+				</div>
 			</div>
+
 			{%endfor%}
 
 		</div>
+		</div>
+	</div>
+	</div>
+
+	<br>
+	 <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+	  <br>
+    <br>
+    <br>
+    <br>
+</div>
+<div class="footer">
+	<div class="row">
+		<div class="col-5">
+			<ul>
+				<li><h4>Baran Hasan BOZDUMAN</h4></li>
+					<div class="img_link">
+						<a href="https://github.com/bhbduman" target="blank">
+							<img src="{% static 'images/GitHub.png' %}">
+							GitHub
+						</a><br>
+					</div>
+			</ul>
+		</div>
+		<div class="col-5">
+			<ul>
+				<li><h4>Nevzat SEFEROGLU</h4></li>
+					<a href="https://github.com/nevzatseferoglu" target="blank">
+						<div class="img_link">
+							<img src="{% static 'images/GitHub.png' %}">
+							GitHub
+						</div>
+					</a>
+			</ul>
+		</div>
+		<div class="col-5">
+			<ul>
+				<li><h4>Ceren GUMUS</h4></li>
+					<a href="https://github.com/cerengumus" target="blank">
+						<div class="img_link">
+							<img src="{% static 'images/GitHub.png' %}">
+							GitHub
+						</div>
+					</a>
+
+			</ul>
+		</div>
+		<div class="col-5">
+			<ul>
+				<li><h4>Ali Bahar</h4></li>
+					<a href="https://github.com/alibhr" target="blank">
+						<div class="img_link">
+							<img src="{% static 'images/GitHub.png' %}">
+							GitHub
+						</div>
+					</a><br>
+			</ul>
+		</div>
+		<div class="col-5">
+			<ul>
+				<li><h4>iletisim Bilgileri</h4></li>
+				<li>Gebze Teknik Universitesi<h4>
+                    <li>+9054623235642<h4>
+					<a href="https://github.com/SoftEngProjects-RapidSoft/Keen-On" target="blank">
+						<div class="img_link">
+							<img src="{% static 'images/GitHub.png' %}">
+							GitHub
+						</div>
+					</a><br>
+				</h4></li>
+			</ul>
+		</div>
 	</div>
 </div>
-
 {% endblock %}

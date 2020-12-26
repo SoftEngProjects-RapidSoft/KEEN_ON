@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+
 from account.models import Customer
 # Create your models here.
 
@@ -16,6 +17,7 @@ class Address(models.Model):
 		return self.country + " " + self.city + " " + self.town + " " +self.aveSt + " " + self.apartmentNo + " " + self.zipCode		
 
 class Product(models.Model):
+	id = models.AutoField
 	customer = models.ForeignKey(Customer, on_delete=models.CASCADE, null=True, blank=True, related_name="product_c")
 	name = models.CharField(max_length=200, null=True)
 	price= models.FloatField()
