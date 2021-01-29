@@ -69,7 +69,7 @@ def checkout(request):
 		order, created = Order.objects.get_or_create(customer=customer, complete=False)
 		items = order.orderitem_set.all()
 		cartItems = order.get_cart_items
-		if (request.user.address.country==None):
+		if (request.user.address.country==None or request.user.address.city==None or request.user.address.town==None or request.user.address.aveSt==None or request.user.address.apartmentNo==None):
 			messages.warning(request, 'You need to update your address information from Account Page->Edit User Information')
 			context = {'messages':messages,'items':items, 'order':order, 'cartItems':cartItems}
 			return redirect('cart')
