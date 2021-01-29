@@ -28,10 +28,11 @@
 		<br>
     <br>
     <br>
-<h2 class="title">Latest Products </h2>
+
+<h2 class="title">Products</h2>
 
 	<div class="row">
-		{% for product in products %}
+	{% for product in products %}
 		<div class="col-3">
 			<img class="thumbnail" src="{{product.imageURL}}">
 			<div class="box-element product">
@@ -41,34 +42,11 @@
 				<button data-product="{{product.id}}" data-action="add" class="btn btn-outline-secondary add-btn update-cart">Add to Cart</button>
 				<a  data-product="{{product.id}}" class="btn btn-success" href="{% url 'product_details' product.id %}">Details</a>
 
-				<h4 style="display: inline-block; float: right"><strong>${{product.price}}</strong></h4>
+				<h4 style="display: inline-block; float: right"><strong> ₺{{product.price}}</strong></h4>
 				<div class="fb-like" data-href="http://127.0.0.1:8000/store/" data-width="" data-layout="button_count" data-action="like" data-size="large" data-share="true"></div>
 			</div>
 		</div>
 		{% endfor %}
-	</div>
-	<br>
-    <br>
-    <br>
-<h2 class="title">Products</h2>
-
-	<div class="row">
-	{% for product in products %}
-		<div class="col-3">
-			<img class="thumbnail" src="{{product.imageURL}}">
-			<h6><strong>{{product.name}}</strong></h6>
-			<div class="rating">
-				<i class="fa fa-star"></i>
-				<i class="fa fa-star"></i>
-				<i class="fa fa-star"></i>
-				<i class="fa fa-star-o"></i>
-				<i class="fa fa-star-o"></i>
-			</div>
-			<button  class="btn btn-outline-secondary add-btn" style = "background-color: #38BF2D;">Add to Cart</button>
-			<a class="btn btn-outline-success" href="#" style = "background-color: #38BF2D;">Details</a>
-			<h4 style="display: inline-block; float: right"><strong>{{product.price|floatformat:2}}₺</strong></h4>
-		</div>
-    {%endfor%}
 	</div>
 	</div>
 	</div>

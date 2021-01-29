@@ -43,7 +43,7 @@
             <h2 class="media-heading">{{user.first_name}} {{user.last_name}}
             </h2>
             <a href="{% url 'account:logout' %}">Logout</a>
-            <p class="lead">Lorem ipsum dolor sit amet ctetur adicing elit, sed do eiusmod tempor incididunt</p>
+            <p class="lead"></p>
             </div>
         </div>
     </div>
@@ -163,15 +163,7 @@
                         <div class="col-4">
                           <img class="thumbnail" src="{{product.imageURL}}">
                           <h6><strong>{{product.name}}</strong></h6>
-                          <div class="rating">
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star-o"></i>
-                            <i class="fa fa-star-o"></i>
-                          </div>
-                          <button  class="btn btn-outline-secondary add-btn">Add to Cart</button>
-                          <a class="btn btn-outline-success" href="#">Details</a>
+                          <a  data-product="{{product.id}}" class="btn btn-success" href="{% url 'product_details' product.id %}">Details</a>
                           <h4 style="display: inline-block; float: right"><strong>{{product.price|floatformat:2}}₺</strong></h4>
                         </div>
                       {%endfor%}

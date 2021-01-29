@@ -26,7 +26,7 @@ def product_details(request):
 	return render(request, 'store/product-details.html', context)
 
 def home(request):
-	products = Product.objects.all()
+	products = Product.objects.all().order_by('-id')[:6]
 	context = {'products':products}
 	return render(request, 'store/index.html', context)
 
@@ -73,6 +73,7 @@ def checkout(request):
 			messages.warning(request, 'You need to update your address information from Account Page->Edit User Information')
 			context = {'messages':messages,'items':items, 'order':order, 'cartItems':cartItems}
 			return redirect('cart')
+		address=request.user.address
 
 	else:
 		#Create empty cart for now for non-logged in user
@@ -80,7 +81,7 @@ def checkout(request):
 		order = {'get_cart_total':0, 'get_cart_items':0, 'shipping':False}
 		cartItems = order['get_cart_items']
 
-	context = {'items':items, 'order':order, 'cartItems':cartItems}
+	context = {'items':items, 'order':order, 'cartItems':cartItems,'address':address}
 	return render(request, 'store/checkout.html', context)
  
 def updateItem(request):
