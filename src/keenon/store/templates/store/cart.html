@@ -41,6 +41,13 @@
 					<th>
 						<a  style="float:right; margin:5px;" class="btn btn-success" href="{% url 'checkout' %}">Checkout</a>
 					</th>
+					{% if messages %}
+						<ul>
+						   {% for message in messages %}
+							   <li>{{ message }}</li>
+						   {% endfor %}
+						</ul>
+					{% endif %}
 				</tr>
 			</table>
 
