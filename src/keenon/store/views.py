@@ -17,7 +17,111 @@ from django.core.mail import EmailMessage
 from django.shortcuts import redirect
 from django.template.loader import get_template
 # Create your views here.
+'''
+def updateItem(request):
 
+				data = json.loads(request.body)
+
+				productId = data['productId']
+
+				action = data['action']
+
+				print('Action:', action)
+
+				print('Product:', productId)
+
+ 
+
+				customer = request.user.customer
+
+				product = Product.objects.get(id=productId)
+
+				order, created = Order.objects.get_or_create(customer=customer, complete=False)
+
+ 
+
+				orderItem, created = OrderItem.objects.get_or_create(order=order, product=product)
+
+ 
+
+				if action == 'add':
+
+								orderItem.quantity = (orderItem.quantity + 1)
+
+				elif action == 'remove':
+
+								orderItem.quantity = (orderItem.quantity - 1)
+
+ 
+
+				orderItem.save()
+
+ 
+
+				if orderItem.quantity <= 0:
+
+								orderItem.delete()
+
+ 
+
+				return JsonResponse('Item was added', safe=False)
+
+ 
+
+def processOrder(request):
+
+				transaction_id = datetime.datetime.now().timestamp()
+
+				data = json.loads(request.body)
+
+ 
+
+				if request.user.is_authenticated:
+
+								customer = request.user.customer
+
+								order, created = Order.objects.get_or_create(customer=customer, complete=False)
+
+								total = float(data['form']['total'])
+
+								order.transaction_id = transaction_id
+
+ 
+
+								if total == order.get_cart_total:
+
+												order.complete = True
+
+								order.save()
+
+ 
+
+								if order.shipping == True:
+
+												ShippingAddress.objects.create(
+
+												customer=customer,
+
+												order=order,
+
+												address=data['shipping']['address'],
+
+												city=data['shipping']['city'],
+
+												state=data['shipping']['state'],
+
+												zipcode=data['shipping']['zipcode'],
+
+												)
+
+				else:
+
+								print('User is not logged in')
+
+ 
+
+				return JsonResponse('Payment submitted..', safe=False)
+'''
 def product_details(request):
 	products = Product.objects.all()
 	context = {'products':products}
@@ -40,24 +144,42 @@ def store(request):
 	return render(request, 'store/store.html', context)
 
 def cart(request):
-	data = cartData(request)
 
-	cartItems = data['cartItems']
-	order = data['order']
-	items = data['items']
+	if request.user.is_authenticated:
+		customer = request.user.customer
+		order, created = Order.objects.get_or_create(customer=customer, complete=False)
+		items = order.orderitem_set.all()
+		cartItems = order.get_cart_items
+	else:
+		#Create empty cart for now for non-logged in user
+		try:
+			cart = json.loads(request.COOKIES['cart'])
+		except:
+			cart = {}
+			print('CART:', cart)
 
-	context = {'items': items, 'order': order, 'cartItems': cartItems}
+		items = []
+		order = {'get_cart_total':0, 'get_cart_items':0, 'shipping':False}
+		cartItems = order['get_cart_items']
+
+	context = {'items':items, 'order':order, 'cartItems':cartItems}
 	return render(request, 'store/cart.html', context)
 
 def checkout(request):
-	data = cartData(request)
+	if request.user.is_authenticated:
+		customer = request.user.customer
+		order, created = Order.objects.get_or_create(customer=customer, complete=False)
+		items = order.orderitem_set.all()
+		cartItems = order.get_cart_items
+	else:
+		#Create empty cart for now for non-logged in user
+		items = []
+		order = {'get_cart_total':0, 'get_cart_items':0, 'shipping':False}
+		cartItems = order['get_cart_items']
 
-	cartItems = data['cartItems']
-	order = data['order']
-	items = data['items']
-
-	context = {'items': items, 'order': order, 'cartItems': cartItems}
+	context = {'items':items, 'order':order, 'cartItems':cartItems}
 	return render(request, 'store/checkout.html', context)
+ 
 def updateItem(request):
 	data = json.loads(request.body)
 	productId = data['productId']
@@ -73,10 +195,12 @@ def updateItem(request):
 	orderItem, created = OrderItem.objects.get_or_create(order=order, product=product)
 
 	if action == 'add':
-		orderItem.quantity = (orderItem.quantity + 1)
+		if not(orderItem.quantity+1 > product.quantity):
+			orderItem.quantity = (orderItem.quantity + 1)
+			product.quantity-=1
 	elif action == 'remove':
 		orderItem.quantity = (orderItem.quantity - 1)
-
+		product.quantity+=1
 	orderItem.save()
 
 	if orderItem.quantity <= 0:
