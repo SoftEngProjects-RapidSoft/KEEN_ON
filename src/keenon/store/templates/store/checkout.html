@@ -20,57 +20,15 @@
     <br>
     <br>
 </div>
-<div style = "background-color:#BABABA ;">
- <div class="row">
-		<div class="col-lg-6">
-			<div class="box-element" id="form-wrapper">
-				<form id="form">
-					<div id="user-info">
-						<div class="form-group">
-							<input required class="form-control" type="text" name="name" placeholder="Name..">
-						</div>
-						<div class="form-group">
-							<input required class="form-control" type="email" name="email" placeholder="Email..">
-						</div>
-					</div>
-
-					<div id="shipping-info">
-						<hr>
-						<p>Shipping Information:</p>
-						<hr>
-						<div class="form-group">
-							<input class="form-control" type="text" name="address" placeholder="Address..">
-						</div>
-						<div class="form-group">
-							<input class="form-control" type="text" name="city" placeholder="City..">
-						</div>
-						<div class="form-group">
-							<input class="form-control" type="text" name="state" placeholder="State..">
-						</div>
-						<div class="form-group">
-							<input class="form-control" type="text" name="zipcode" placeholder="Zip code..">
-						</div>
-						<div class="form-group">
-							<input class="form-control" type="text" name="country" placeholder="Zip code..">
-						</div>
-					</div>
-
-					<hr>
-					<!--<input id="form-button" class="btn btn-success btn-block" type="submit" value="Continue">-->
-					<a id="form-button" class="btn btn-success btn-block">SEND MAIL </a>
-				</form>
-			</div>
+			
+				
 
 			<br>
-			<div class="box-element hidden" id="payment-info">
-				<small>Paypal Options</small>
-				<!--<button id="make-payment">Make payment</button>-->
-				<div id="paypal-button-container"></div>
-			</div>
+<div class="row">
 
-		</div>
-
-		<div class="col-lg-6">
+  <div class="col-25">
+    <div class="container">
+      <<div class="col-lg-6">
 			<div class="box-element">
 				<a  class="btn btn-outline-dark" href="{% url 'cart' %}">&#x2190; Back to Cart</a>
 				<hr>
@@ -80,13 +38,73 @@
 				<div class="cart-row">
 					<div style="flex:2"><img class="row-image" src="{{item.product.imageURL}}"></div>
 					<div style="flex:2"><p>{{item.product.name}}</p></div>
-					<div style="flex:1"><p>${{item.product.price|floatformat:2}}</p></div>
+					<div style="flex:1"><p> ₺{{item.product.price|floatformat:2}}</p></div>
 					<div style="flex:1"><p>x{{item.quantity}}</p></div>
 				</div>
 				{% endfor %}
 				<h5>Items:   {{order.get_cart_items}}</h5>
-				<h5>Total:   ${{order.get_cart_total|floatformat:2}}</h5>
+				<h5>Total:    ₺{{order.get_cart_total|floatformat:2}}</h5>
 			</div>
+		</div>
+
+  </div>
+
+</div>
+<div class="col-25">
+    <div class="container">
+      <<div class="col-lg-6">
+			<div class="box-element">
+				<hr>
+				<h3>Shipping Address</h3>
+				<hr>
+				<h4>Country  	 :{{address.country}}</h4>
+				<h4>City 		 :{{address.city}}</h4>
+				<h4>Town 	     :{{address.town}}</h4>
+				<h4>Avenue/Street:{{address.aveSt}}</h4>
+				<h4>Apartment No :{{address.apartmentNo}}</h4>
+				<h4>Zip Code     :{{address.zipCode}}</h4>
+			</div>
+		</div>
+
+  </div>
+
+</div>
+
+  <div class="col-75">
+    <div class="container">
+      <form action="/action_page.php">
+
+        <div class="row">
+          <div class="col-50">
+            <h3>Payment</h3>
+            <label for="cname">Name on Card</label>
+            <input type="text" id="cname" name="cardname" placeholder="John More Doe">
+            <label for="ccnum">Credit card number</label>
+            <input type="text" id="ccnum" name="cardnumber" placeholder="1111-2222-3333-4444">
+            <label for="expmonth">Exp Month</label>
+            <input type="text" id="expmonth" name="expmonth" placeholder="September">
+
+            <div class="row">
+              <div class="col-50">
+                <label for="expyear">Exp Year</label>
+                <input type="text" id="expyear" name="expyear" placeholder="2018">
+              </div>
+              <div class="col-50">
+                <label for="cvv">CVV</label>
+                <input type="text" id="cvv" name="cvv" placeholder="352">
+              </div>
+            </div>
+          </div>
+
+        </div>
+        
+        <input type="submit" value="Continue to checkout" class="btn">
+      </form>
+    </div>
+
+  </div>
+
+
 		</div>
 	</div>
 	<br>
