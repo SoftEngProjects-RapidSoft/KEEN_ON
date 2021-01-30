@@ -13,24 +13,21 @@
 
 
 
-
+<div style = "background-color:#DDDDE0;">
+<div style = "background-color: #00ff00;">
 <div>
     {% include "store/navbar.html" %}
     <br>
     <br>
     <br>
 </div>
-			
-				
-
-			<br>
+</div>
+<br>
 <div class="row">
-
-  <div class="col-25">
-    <div class="container">
+  <div class="col-50">
       <<div class="col-lg-6">
 			<div class="box-element">
-				<a  class="btn btn-outline-dark" href="{% url 'cart' %}">&#x2190; Back to Cart</a>
+				<a  class="btn btn-outline-dark" href="{% url 'cart' %}"> &#x2190; Back to Cart</a>
 				<hr>
 				<h3>Order Summary</h3>
 				<hr>
@@ -46,12 +43,8 @@
 				<h5>Total:    ₺{{order.get_cart_total|floatformat:2}}</h5>
 			</div>
 		</div>
-
-  </div>
-
 </div>
-<div class="col-25">
-    <div class="container">
+<div class="col-75">
       <<div class="col-lg-6">
 			<div class="box-element">
 				<hr>
@@ -65,80 +58,121 @@
 				<h4>Zip Code     :{{address.zipCode}}</h4>
 			</div>
 		</div>
-
-  </div>
-
 </div>
 
-  <div class="col-75">
-    <div class="container">
+  <div class="col-75"  style = "background-color:#BF8CB9;">
       <form action="/action_page.php">
-
         <div class="row">
           <div class="col-50">
-            <h3>Payment</h3>
-            <label for="cname">Name on Card</label>
+			  <h3><b></b>PAYMENT</b></h3>
+			  <br>
+            <label for="cname"><b>Name on Card</b></label>
             <input type="text" id="cname" name="cardname" placeholder="John More Doe">
-            <label for="ccnum">Credit card number</label>
+            <label for="ccnum"><b>Credit card number</b></label>
             <input type="text" id="ccnum" name="cardnumber" placeholder="1111-2222-3333-4444">
-            <label for="expmonth">Exp Month</label>
+			  <label for="expmonth"><b>Exp Month</b></label>
             <input type="text" id="expmonth" name="expmonth" placeholder="September">
 
             <div class="row">
               <div class="col-50">
-                <label for="expyear">Exp Year</label>
+                <label for="expyear"><b>Exp Year</b></label>
                 <input type="text" id="expyear" name="expyear" placeholder="2018">
               </div>
               <div class="col-50">
-                <label for="cvv">CVV</label>
+                <label for="cvv"><b>CVV</b></label>
                 <input type="text" id="cvv" name="cvv" placeholder="352">
               </div>
             </div>
-          </div>
-
         </div>
-        
         <input type="submit" value="Continue to checkout" class="btn">
-      </form>
+			</form>
+		</div>
     </div>
+</div>
 
-  </div>
+<div style = "background-color: #DDDDE0;">
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+</div>
+</div>
+</div>
+</div>
+<div class="footer">
+	<div class="row">
+		<div class="col-5">
+			<ul>
+				<li><h4>Baran Hasan BOZDUMAN</h4></li>
+					<div class="img_link">
+						<a href="https://github.com/bhbduman" target="blank">
+							<img src="{% static 'images/GitHub.png' %}">
+							GitHub
+						</a><br>
+					</div>
+			</ul>
+		</div>
+		<div class="col-5">
+			<ul>
+				<li><h4>Nevzat SEFEROGLU</h4></li>
+					<a href="https://github.com/nevzatseferoglu" target="blank">
+						<div class="img_link">
+							<img src="{% static 'images/GitHub.png' %}">
+							GitHub
+						</div>
+					</a>
+			</ul>
+		</div>
+		<div class="col-5">
+			<ul>
+				<li><h4>Ceren GUMUS</h4></li>
+					<a href="https://github.com/cerengumus" target="blank">
+						<div class="img_link">
+							<img src="{% static 'images/GitHub.png' %}">
+							GitHub
+						</div>
+					</a>
 
-
+			</ul>
+		</div>
+		<div class="col-5">
+			<ul>
+				<li><h4>Ali Bahar</h4></li>
+					<a href="https://github.com/alibhr" target="blank">
+						<div class="img_link">
+							<img src="{% static 'images/GitHub.png' %}">
+							GitHub
+						</div>
+					</a><br>
+			</ul>
+		</div>
+		<div class="col-5">
+			<ul>
+				<li><h4>iletisim Bilgileri</h4></li>
+				<li>Gebze Teknik Universitesi<h4>
+                    <li>+9054623235642<h4>
+					<a href="https://github.com/SoftEngProjects-RapidSoft/Keen-On" target="blank">
+						<div class="img_link">
+							<img src="{% static 'images/GitHub.png' %}">
+							GitHub
+						</div>
+					</a><br>
+				</h4></li>
+			</ul>
 		</div>
 	</div>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
 </div>
 </div>
+</html>
 <script type="text/javascript">
 		var shipping = '{{order.shipping}}'
 		var total = '{{order.get_cart_total|floatformat:2}}'
