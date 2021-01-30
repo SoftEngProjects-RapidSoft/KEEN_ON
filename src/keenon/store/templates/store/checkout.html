@@ -7,6 +7,7 @@
     <link rel="stylesheet" type="text/css" href="{% static 'css/profile.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/navbar.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/payment.css' %}">
 {% endblock %}
 
 {% block content %}
@@ -59,34 +60,51 @@
 			</div>
 		</div>
 </div>
-
-  <div class="col-75"  style = "background-color:#BF8CB9;">
-      <form action="/action_page.php">
-        <div class="row">
-          <div class="col-50">
-			  <h3><b></b>PAYMENT</b></h3>
-			  <br>
-            <label for="cname"><b>Name on Card</b></label>
-            <input type="text" id="cname" name="cardname" placeholder="John More Doe">
-            <label for="ccnum"><b>Credit card number</b></label>
-            <input type="text" id="ccnum" name="cardnumber" placeholder="1111-2222-3333-4444">
-			  <label for="expmonth"><b>Exp Month</b></label>
-            <input type="text" id="expmonth" name="expmonth" placeholder="September">
-
-            <div class="row">
-              <div class="col-50">
-                <label for="expyear"><b>Exp Year</b></label>
-                <input type="text" id="expyear" name="expyear" placeholder="2018">
-              </div>
-              <div class="col-50">
-                <label for="cvv"><b>CVV</b></label>
-                <input type="text" id="cvv" name="cvv" placeholder="352">
-              </div>
+	<div class="col-75">
+	<div class="card-body">
+          <div class="row">
+            <div class="col-md-7">
+                <div class="left border">
+                    <div class="row"> <span class="header">Payment</span>
+                        <div class="icons"> <img src="https://img.icons8.com/color/48/000000/visa.png" /> <img src="https://img.icons8.com/color/48/000000/mastercard-logo.png" /> <img src="https://img.icons8.com/color/48/000000/maestro.png" /> </div>
+                    </div>
+                    <form> <span>Cardholder's name:</span> <input placeholder="Linda Williams"> <span>Card Number:</span> <input placeholder="0125 6780 4567 9909">
+                        <div class="row">
+                            <div class="col-4"><span>Expiry date:</span> <input placeholder="YY/MM"> </div>
+                            <div class="col-4"><span>CVV:</span> <input id="cvv"> </div>
+							 </div>
+					</form>
+                </div>
+            </div>
+            <div class="col-md-5">
+                <div class="right border">
+                    <hr>
+                    <div class="row lower">
+                        <div class="col text-left">Subtotal</div>
+                        <div class="col text-right">₺{{order.get_cart_total|floatformat:2}}</div>
+                    </div>
+                    <div class="row lower">
+                        <div class="col text-left">Delivery</div>
+                        <div class="col text-right">Free</div>
+                    </div>
+                    <div class="row lower">
+                        <div class="col text-left"><b>Total to pay</b></div>
+                        <div class="col text-right"><b>₺{{order.get_cart_total|floatformat:2}}</b></div>
+                    </div>
+                    <div class="row lower">
+                        <div class="col text-left"><a href="#"><u>Add promo code</u></a></div>
+                    </div> <button class="btn">Place order</button>
+                    <p class="text-muted text-center">Complimentary Shipping & Returns</p>
+                </div>
             </div>
         </div>
-        <input type="submit" value="Continue to checkout" class="btn">
-			</form>
-		</div>
+    </div>
+    <div> </div>
+</div>
+	</div>
+</div>
+
+
     </div>
 </div>
 
