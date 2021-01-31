@@ -49,16 +49,8 @@ def cart(request):
 		items = order.orderitem_set.all()
 		cartItems = order.get_cart_items
 	else:
+		return redirect( "account:login")
 		#Create empty cart for now for non-logged in user
-		try:
-			cart = json.loads(request.COOKIES['cart'])
-		except:
-			cart = {}
-			print('CART:', cart)
-
-		items = []
-		order = {'get_cart_total':0, 'get_cart_items':0, 'shipping':False}
-		cartItems = order['get_cart_items']
 
 	context = {'items':items, 'order':order, 'cartItems':cartItems}
 	return render(request, 'store/cart.html', context)
@@ -105,6 +97,8 @@ def updateItem(request):
 	elif action == 'remove':
 		orderItem.quantity = (orderItem.quantity - 1)
 		product.quantity+=1
+
+	product.save()
 	orderItem.save()
 
 	if orderItem.quantity <= 0:
@@ -145,6 +139,7 @@ def product_details(request,id):
 	context = {}
 	product = get_object_or_404(Product,id = id)
 	context = {'product': product, 'id': id}
+	print(product.quantity)
 	return render(request, "store/product-details.html",context)
 
 
