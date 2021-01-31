@@ -36,7 +36,7 @@
                         <input type="text" name="username" placeholder="Username">
                         <input type="password" name="password" placeholder="Password">
                         <button type="submit" class="btn" name="Login">Login</button>
-                        <a href="">Forgot password</a>
+                        <a href="{% url 'account:reset_passwod' %}">Forgot password</a>
                     	{{ form.errors }}
                     </form>
 
