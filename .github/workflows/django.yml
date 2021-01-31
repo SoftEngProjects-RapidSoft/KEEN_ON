@@ -29,7 +29,7 @@ jobs:
         pip install -r ./src/keenon/requirements.txt
     - name: Run Tests
       run: |
-        cd src;cd keenon; python manage.py test; cd .. ;cd ..; cd ..
+        cd src;cd keenon; python manage.py test; cd .. ;cd ..
     - name: Deploy to Heroku
       env:
         HEROKU_API_TOKEN: ${{ secrets.HEROKU_API_TOKEN }}
