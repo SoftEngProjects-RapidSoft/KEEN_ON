@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from .models import Product, Order
-from account.views import account_details
+from account.views import account_details, login
 from account.models import Customer
 from django.shortcuts import render
 from django.http import JsonResponse
